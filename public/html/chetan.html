@@ -1,0 +1,38 @@
+
+<script id="target" type="text/template">
+   	{{#memories.values}}
+			<div data-x ='{{x}}' data-y ='{{y}}' data-open='' data-color={{color}} class='circle zero zoomIn'  style='
+			color:{{color}};
+			-webkit-transform: translate3d({{x}}px ,{{y}}px, 0) scale3d(1,1,1);
+			-moz-transform: translate3d({{x}}px, {{y}}px, 0) scale3d(1,1,1);
+			transform: translate3d({{x}}px ,{{y}}px ,0) scale3d(1,1,1);
+			 
+			'> 
+			<div>
+			<i class="fa fa-{{icon}} fa-2x"></i>
+			<div class=close />
+			</div>
+				
+				<div>{{shorttext}}</div>
+
+				<section style="display:none;"> 
+				{{#fullmessage}}
+				   <div>
+		{{#imgs}}
+				         <a href="{{href}}" target="_blank">
+							<img src="{{url}}" style=" width: 0px;" />
+						</a>
+		{{/imgs}}</div>
+				<div style="font-size: xx-large;white-space: pre-wrap;
+width: 80%;
+padding: 10%;">{{para}}
+				   </div>
+					
+				{{/fullmessage}}
+				<div id="disqus_thread"></div>
+				</section>
+		 	</div>
+			   
+			 {{/memories.values}}
+
+ </script>

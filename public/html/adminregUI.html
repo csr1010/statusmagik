@@ -1,0 +1,54 @@
+<div>
+  <alert ng-show="alert.msg != ''" type="alert.type" ng-swipe-right="alert.msg='' "   close="alert.msg='' ">{{alert.msg}}</alert>
+</div>
+  <div class="col-xs-12 ">
+      <form class="form-signin" name="registrationForm">
+        <div ng-init="regDetails['form'] = registrationForm" class="form-signin-heading" style='font-size:xx-large;'>Register here</div>
+      
+        <input required name= "Employee ID"
+        type="{{regDetails.empid.type}}"  maxlength="6" 
+        ng-pattern = "/^[\d]{6}$/" 
+        class="form-control" 
+        ng-model="regDetails.empid.selectedResult"
+        placeholder="{{regDetails.empid.placeHolder}}" >
+        
+        <input required name= "Full Name"
+        type="text" 
+        class="form-control" 
+        ng-pattern = "/^([\d\w\s/])*$/"
+        ng-model="regDetails.name.selectedResult"
+        placeholder="{{regDetails.name.placeHolder}}" >
+         
+         <input required name= "contact No"
+          type="{{regDetails.contact.type}}" maxlength="10" 
+        class="form-control" 
+        ng-pattern = "/^[\d]{10}$/"
+        ng-model="regDetails.contact.selectedResult"
+        placeholder="{{regDetails.contact.placeHolder}}" >
+        
+          <select
+							  required 
+							  class="form-control" 
+							  name="Account Name"
+							  ng-model="regDetails.Account.selectedResult"  
+							  ng-options ="p for p in regDetails.Account.list">
+							 	<option value="">Account</option>
+							 </select>
+         
+        
+        <input required name= "Password"
+        type="password" 
+        class="form-control" 
+        ng-model="regDetails.pwd.selectedResult"
+        placeholder="{{regDetails.pwd.placeHolder}}" >
+        
+        <button 
+        class="btn btn-lg btn-primary btn-block" 
+        ng-click="registration()"
+        ng-disabled="registrationForm.$invalid "
+        type="submit">Register</button>
+        
+         <a class="btn btn-lg btn-primary btn-block" 
+          href="/#/login" class="headerspan">back to Login</a>
+      </form>
+    </div>

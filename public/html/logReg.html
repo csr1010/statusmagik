@@ -1,0 +1,71 @@
+
+
+
+  <div class="container">
+  <header style="margin: 0.5%;"> 
+			<abbr title="online form">
+		              <a href="/chetan.html" class="headerspan">STATUS MAGIK &beta;</a>
+		   </abbr>
+		   
+		   <abbr title="online form">
+		              <a href="/#/adminreg" class="headerspan">Register here</a>
+		   </abbr>
+  </header>
+    <div class="col-xs-12 ">
+      <form class="form-signin" name="loginform">
+        <div ng-init="logindetails['form']  = loginform"class="form-signin-heading" style='font-size:xx-large;'>Please sign in</div>
+
+        <input 
+        type="{{logindetails.empid.type}}" required
+        ng-pattern = "/^[\d]{6}$/"   max=999999
+        maxlength="6"
+        class="form-control" 
+        placeholder="{{logindetails.empid.placeHolder}}" 
+        ng-model="logindetails.empid.selectedResult" >
+        
+        <input 
+        type="password" required
+        class="form-control" 
+        ng-model="logindetails.pwd.selectedResult"
+        placeholder="{{logindetails.pwd.placeHolder}}">
+        
+         <button 
+        class="btn btn-lg btn-primary btn-block" 
+        ng-click="login()"
+        ng-disabled="loginform.$invalid "
+        type="submit">Enter</button>
+        
+      </form>
+    </div>
+    
+  <!--    <div class="col-xs-12 col-sm-6">
+      <form class="form-signin" name="registrationForm">
+        <div ng-init="regDetails['form'] = registrationForm" class="form-signin-heading" style='font-size:xx-large;'><sub> or </sub>Update Password</div>
+      
+        <input required name= "Employee ID"
+        type="{{regDetails.empid.type}}"  maxlength="6" 
+        ng-pattern = "/^[\d]{6}$/" 
+        class="form-control" 
+        ng-model="regDetails.empid.selectedResult"
+        placeholder="{{regDetails.empid.placeHolder}}" >
+        
+        
+        <input required name= "Password"
+        type="password" 
+        class="form-control" 
+        ng-model="regDetails.pwd.selectedResult"
+        placeholder="{{regDetails.pwd.placeHolder}}" >
+        
+        <button 
+        class="btn btn-lg btn-primary btn-block" 
+        ng-click="registration()"
+        ng-disabled="registrationForm.$invalid "
+        type="submit">Update Password</button>
+        
+      </form>
+    </div> -->
+   </div>
+   
+ <div>
+  <alert ng-show="alert.msg != ''" type="alert.type" ng-swipe-right="alert.msg='' "   close="alert.msg='' ">{{alert.msg}}</alert>
+</div>

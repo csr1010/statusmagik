@@ -1,0 +1,42 @@
+
+<script id="target" type="text/template">
+   	{{#memories.values}}
+			<div data-x ='{{x}}' data-y ='{{y}}' data-open='' data-color={{color}} class='circle zero zoomIn'  style='
+			background:{{color}};
+			-webkit-transform: translate3d({{x}}px ,{{y}}px, 0) scale3d(1,1,1);
+			-moz-transform: translate3d({{x}}px, {{y}}px, 0) scale3d(1,1,1);
+			transform: translate3d({{x}}px ,{{y}}px ,0) scale3d(1,1,1);
+			 
+			'> 
+			<div>
+			<i class="fa fa-{{icon}} fa-2x"></i>
+			<div class=close />
+			</div>
+				
+				<div>{{shorttext}}</div>
+
+				<section style="display:none;"> 
+				{{#fullmessage}}
+				   <div>
+		{{#imgs}}
+				         <a href="{{href}}">
+							<img src="{{url}}" style="border-radius: 50%;
+width: 150px;
+height: 150px;" />
+						</a>
+		{{/imgs}}</div>
+				<div style="font-size: xx-large;
+width: 80%;
+padding: 10%;">
+				   		{{para}}
+				   </div>
+					
+				{{/fullmessage}}
+<div  style="display:none" class="fb-like" data-href="http://www.testmagik.in/main" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<div style="display:none" class="fb-comments" data-href="http://www.testmagik.in/main" data-numposts="5" data-colorscheme="light"></div>
+				</section>
+		 	</div>
+			   
+			 {{/memories.values}}
+
+ </script>

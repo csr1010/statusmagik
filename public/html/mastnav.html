@@ -1,0 +1,33 @@
+<section class="supermainlayout" >
+<div class=blockr ng-click="closesettings()">
+</div>
+</div>
+<div class= "leftnavclass" ng-swipe-left="closesettings()">
+<header>
+<div class="dashesLeft">
+  		      <button ng-click="closesettings()" style="font-size: x-large;background:  rgba(255, 0, 0, 0.02);color: #FDFCFC;">
+  		      <i class="icon icon-menu"></i></button>
+  		   </div>
+  		   
+			<abbr title="">
+		             <span class="headerspan">{{navigationMenu.header.title}}</span> 
+		   </abbr>
+		   <div class="logoff"><button ng-click ="logoff()"style="font-size: larger;color: #FAFAFA;"><i class="glyphicon glyphicon-off"></i></button></div>
+</header>
+<ul class="nonfilgridsholder" style="overflow-y:auto;" ng-style="{height:regListheight}">
+<a 
+ng-repeat ="i in navigationMenu.body.menu" 
+ style="
+ -webkit-transform:translateX(-{{($index+1)*50}}px) translateZ(0px);
+ -moz-transform:translateX(-{{($index+1)*50}}px) translateZ(0px);
+ -o-transform:translateX(-{{($index+1)*50}}px) translateZ(0px);
+ transform:translateX(-{{($index+1)*50}}px) translateZ(0px);
+ "
+ng-click="closesettings()" ui-sref="{{i.href}}" class="leftsidelist {{movNarml}}"> 
+<i style="color:#fff"class="{{i.icon}} iconleftnav col-xs-2"></i>
+<span class=col-xs-10>{{i.title}}</span> 
+</a>
+</ul>
+</div>
+<div class="nonfulfillClass" ng-swipe-right="opensettings()"  ui-view></div>
+  </section>

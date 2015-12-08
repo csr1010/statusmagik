@@ -1,0 +1,60 @@
+   	 <alert ng-show="alert.msg != ''" type="alert.type" ng-swipe-right="alert.msg='' "   close="alert.msg='' ">{{alert.msg}}</alert>
+  		   <header>
+  		   <div class="dashes">
+  		     
+ 	<button  ng-click="opensettings()" style="font-size: x-large;background: rgba(255, 0, 0, 0.02);;color: #FDFCFC;">
+  		      <i class="icon icon-menu"></i>
+  		      </button>
+  		   </div>
+  		   <abbr title="Register Employess here remove or transfer , activate or de activate them etc..">
+		              <span class="headerspan">reviews</span>
+		   </abbr>
+		   <button   tooltip-append-to-body='true' tooltip-placement="left" tooltip="POST"  ng-click ="postcritic(0)"class='center buttonAligner'> <i  style="background: #3EE2C1;"class="glyphicon  icon icon-direction footericon" > </i></button>
+  		   </header>
+  		   <section ng-style="{height:regListheight}"  infinite-scroll="alert.range = alert.range +  1" infinite-scroll-distance="0"style="overflow-y: auto;background: rgb(236, 236, 236);">
+				<ul class="nonfilgridsholder"   >
+				<div class="runlist kritik" ng-if="allCritics.list.length == 0 ">No reviews available</div>
+					<div  ng-repeat ="i in allCritics.list | limitTo: alert.range track by  $index | orderBy:'info.tstmp'"  class="kritik  runlist {{i.info.clas}}">
+						<span class="v col-xs-2  ">
+						 <!-- <span>RUN </span> -->
+						 <span  ng-style="{background:i.color}" class=runNumbers>{{i.name.substr(0,1)}}</span>
+						</span>
+						<span class="v col-xs-6"style="font-size: medium;">
+						 <!-- <span>RUN </span> -->
+						 <div>{{i.name}}</div>
+						 <div>{{i.account}}</div>
+						</span>
+						<div class="v col-xs-4  " ng-if="i.empid == currentUser && $index>0">
+						<button     tooltip-append-to-body='true' tooltip-placement="left" tooltip="delete"  style="z-index:99999;padding:13px;border: none;height: 50px;color: #FF6C6C;" 
+							class="btn btn-default pull-right"
+							ng-click="deleteCritic($index)">
+							<i class="icon icon-cross"></i>
+						</button>
+						<button ng-show="editbutton"   tooltip-append-to-body='true' tooltip-placement="left" tooltip="edit"   style="z-index:99999;padding:13px;border: none;height: 50px;color: #B3B1AC;;" 
+							class="btn btn-default pull-right"
+							ng-click="editCritic(i)">
+							<i class="icon icon-document-edit"></i>
+						</button>
+						<button  ng-show="sendbutton"   tooltip-append-to-body='true' tooltip-placement="left" tooltip="Re-send"  style="z-index:99999;padding:13px;border: none;height: 50px;color: #57C487;;" 
+							class="btn btn-default pull-right"
+							ng-click="postcritic(i)">
+							<i class="icon icon-direction"></i>
+						</button>
+						</div>
+						 <div  class="rundesc" >
+								  <textarea    style="background: rgb(255, 255, 255);height: 100%;width:100%;border:none;"
+								  type= text required
+								  ng-disabled="i.post.disabled" 
+								  ng-pattern = "/^([\d\w\s/.,_?':@!())])*$/"
+							        placeholder="{{i.post.placeHolder}}"
+								  ng-model="i.post.selectedResult"
+								  name = "post " 
+								   </textarea>
+							</div>
+					</div>
+				</ul> 		   
+  		   </section>
+  		    <div>
+  		    
+ 
+</div>

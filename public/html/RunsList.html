@@ -1,0 +1,136 @@
+   	 <alert ng-show="alert.msg != ''" type="alert.type" ng-swipe-right="alert.msg='' "   close="alert.msg='' ">{{alert.msg}}</alert>
+  		   <header>
+  		   <div class="dashes">
+  		     
+ 	<button ng-click="gototestcases()" style="font-size: x-large;background: rgba(255, 0, 0, 0.02);;color: #FDFCFC;">
+  		      <i class="icon icon-media-play rotleft" ></i>
+  		   </button>
+  		   </div>
+  		   <abbr title="Register Employess here remove or transfer , activate or de activate them etc..">
+		              <span class="headerspan">{{regHead.title}}</span>
+		   </abbr>
+		   
+		   <button ng-if="alert.buttns.add" tooltip-append-to-body='true' tooltip-placement="left" tooltip="add new issue"  ng-click ="addRunissue()"class='center buttonAligner'> <i class="glyphicon icon icon-plus footericon" > </i></button>
+  		   </header>
+  		 <!--   <footer>
+  		       <div class=" NFlistsubflexes " >
+				      <div class="halfflex">
+				     	 <input   ng-change="filterModel.todate = (filterModel.todate<filterModel.fromdate) ? null : filterModel.todate"  placeholder = "from date"class="textaligneraside1" type= text datepicker-popup="shortDate" show-button-bar="false" show-weeks="false" ng-model="filterModel.fromdate"  max="filterModel.today">
+				     	 <input  placeholder = "to date"class="textaligneraside1" type= text datepicker-popup="shortDate" show-button-bar="false" show-weeks="false" ng-model="filterModel.todate" min="filterModel.fromdate" max="filterModel.today">
+				       </div>
+				      <div class="halfflex"> 
+<button ng-click ="gotoTestCases()"class='center buttonAligner'> <i class="glyphicon glyphicon-filter footericon" > </i></button>
+				      </div>
+		  	</div>
+  		   </footer> -->
+  		   <section  ng-style="{height:regListheight}" style="overflow-y: auto;background: rgb(236, 236, 236);">
+				<ul class="nonfilgridsholder" >
+				<div class="runlist" ng-if="regBody.runBoxmodel.length == 0 ">No tasks available</div>
+				 
+				<form name="runForm">
+					<div ng-show="alert.jiraStatus=='Active'" ng-init = "alert['form'] = runForm" 
+					ng-repeat ="i in regBody.runBoxmodel"  class=" runlist">
+						<span class="col-xs-2  ">
+						 <!-- <span>RUN </span> -->
+						 <span >{{i.runid}}</span></span>
+						 <div class="col-xs-7 ipClass2 ">
+						   
+ 							
+						 </div>
+						 <div  class="btn-group btn-group-lg col-xs-3  ">
+						 	<button ng-if="alert.buttns.save" tooltip-append-to-body='true' 
+ 							tooltip-placement="left" tooltip="save all changes "  
+ 							ng-click ="saveruns(0)"class='center buttonAligner'> 
+ 							<i  style="padding:6px; #3EE2C1;"class="glyphicon  icon icon-checkmark footericon" > </i></button>
+ 							
+						 </div>
+						 <div  class="rundesc" ng-repeat= "k in i.description track by $index">
+						 	   <div ng-show="$index>0" class="col-xs-1 checkmebox"   
+				            ng-click="k.selected = k.selected ? false : true;">
+				       	<span >
+				       	  <i 
+				       	    ng-class="{glyphiconCheck: k.selected,glyphiconUNCheck:!k.selected}" 
+				       	    class="icon specialicons ">
+				       	  </i>
+				       	</span>
+				       </div>
+						 	
+								  <input  ng-class="{fullwidth: $index==0}" 
+								    style="height: 100%;width:80%;border:none;"
+								  type= text required
+								  ng-disabled="k.selected" 
+								  ng-pattern = "/^([\d\w\s/])*$/"
+							        placeholder="{{k.placeHolder}}"
+								  ng-model="k.selectedResult"
+								  name = "Task description  " 
+								  list="issuedesc" >
+									<datalist id="issuedesc">
+									<select>
+									<option value=""></option>
+										<option ng-repeat ="subobj in runDescs" value="{{subobj}}">
+									</select>
+									</datalist>
+					 <button  ng-show="$index>0"  ng-disabled="k.selected"   style="z-index:99999;border: none;height: 50px;color: #FF6C6C;" 
+							class="btn btn-default pull-right"
+							ng-click="deleterunIssue(i,k)">
+							<i class="icon icon-cross"></i>
+						</button>
+							</div>
+					</div>
+					</form>
+					 
+					<!-- old reg boxes -->
+					<div  ng-repeat ="i in regBody.oldrunBoxmodel | orderBy:'-runid'"  class=" runlist">
+					 <span class="col-xs-2  ">
+						 <!-- <span>RUN </span> -->
+						 <span >{{i.runid}}</span></span>
+						 <div class="col-xs-7 ipClass2 ">
+						   
+ 							
+						 </div>
+						 <div   ng-init="currentRunCount = $index" class="btn-group btn-group-lg col-xs-3  ">
+						 	<button ng-if="alert.buttns.save" tooltip-append-to-body='true' 
+ 							tooltip-placement="left" tooltip="save all changes "  
+ 							ng-click ="saveruns($index+1,i.runid)"class='center buttonAligner'> 
+ 							<i  style="padding:6px; #3EE2C1;"class="glyphicon  icon icon-checkmark footericon" > </i></button>
+ 							
+						 </div>
+						 <div class="rundesc" ng-repeat= "k in i.description">
+						 	   <div class="col-xs-1 checkmebox"   
+				            ng-click="k.selected = k.selected ? false : true">
+				       	<span >
+				       	  <i 
+				       	    ng-class="{glyphiconCheck: k.selected,glyphiconUNCheck:!k.selected}" 
+				       	    class="icon specialicons ">
+				       	  </i>
+				       	</span>
+				       </div>
+						 	
+								  <input    style="height: 100%;width:80%;border:none;"
+								  type= text required
+								  ng-disabled="k.selected" 
+								  ng-pattern = "/^([\d\w\s/])*$/"
+							        placeholder="{{k.placeHolder}}"
+								  ng-model="k.selectedResult"
+								  name = "Task description  " 
+								  list="issuedesc" >
+									<datalist id="issuedesc">
+									<select>
+									<option value=""></option>
+										<option ng-repeat ="subobj in runDescs" value="{{subobj}}">
+									</select>
+									</datalist>
+					 <button   ng-disabled="k.selected"   style="z-index:99999;border: none;height: 50px;color: #FF6C6C;" 
+							class="btn btn-default pull-right"
+							ng-click="deleterunIssue(i,k)">
+							<i class="icon icon-cross"></i>
+						</button>
+							</div>
+					</div>
+					
+				</ul> 		   
+  		   </section>
+  		    <div>
+  		    
+ 
+</div>

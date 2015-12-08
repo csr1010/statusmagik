@@ -1,0 +1,149 @@
+   	 <alert ng-show="alert.msg != ''" type="alert.type" ng-swipe-right="alert.msg='' "   close="alert.msg='' ">{{alert.msg}}</alert>
+  		   <header>
+  		   <div class="dashes">
+  		  <button ng-click="gotoprjcts()" style="font-size: x-large;background: rgba(255, 0, 0, 0.02);;color: #FDFCFC;">
+  		      <i class="icon icon-media-play rotleft" ></i>
+  		   </button>
+  		   </div>
+  		   <abbr title="Register Employess here remove or transfer , activate or de activate them etc..">
+		             <span class="headerspan">{{testcsHead.title}}</span>
+		   </abbr>
+		   
+		   <button tooltip-append-to-body='true' tooltip-placement="left" tooltip="click this once all changes are done"  ng-show="testCasedetails.buttons.done" ng-click ="saveProject()"class='center buttonAligner'> 
+		   		<i  style="background: #3EE2C1;"class="glyphicon  icon icon-checkmark footericon" > </i>
+		   </button>
+		   
+		   <button tooltip-append-to-body='true' tooltip-placement="left" tooltip="go to edit mode"  ng-show="testCasedetails.buttons.edit"ng-click ="editTestcases()"class='center buttonAligner'> 
+		   		<i class="glyphicon glyphicon-pencil footericon" > </i>
+		   </button>
+		   
+  		   </header>
+  		   <section ng-style="{height:regListheight}" style="overflow-y: auto;background: rgb(236, 236, 236);">
+  		    <form name="testcaseForm">
+				<ul class="nonfilgridsholder" ng-init = "testCasedetails['form'] = testcaseForm">
+					<div class="runlist ">
+					<div class="col-xs-9">
+					  <span class=" col-xs-12 col-sm-2" style="
+					    display: block;
+					    font-size: medium;
+					    text-align: left;
+					">Project Name</span>
+					  	<div class=" col-xs-12 col-sm-10" >
+							<input class="ipClass " 
+							   type="text" 
+							   	required
+							   	name="project name"
+							   	ng-disabled="regBody.testcsBoxModel.name.disabled || !testCasedetails.projectdetails" 
+						        ng-pattern = "/^([\d\w\s/])*$/"
+						        ng-model="regBody.testcsBoxModel.name.selectedResult"
+							 	placeholder="{{regBody.testcsBoxModel.name.placeHolder}}"
+							 	>
+							 		
+						 </div>
+					</div>
+					<div  class="col-xs-3">
+					<div class=" col-xs-12">
+						<span class=" k col-xs-12  " style="
+					    display: block;
+					    font-size: medium;
+					    text-align: center;
+					    font-size: xx-large;
+					">{{regBody.testcsBoxModel.count.selectedResult}}</span>
+						    <span class=" col-xs-12  " style="
+					    display: block;
+					    font-size: small;
+					    text-align: center;
+					">persons</span>
+					</div>
+					</div>
+					</div>
+					<div class="runlist ">
+					<span class=" col-xs-12 col-sm-2" style="
+					    display: block;
+					    font-size: medium;
+					    text-align: left;
+					">PHASE</span>
+						<div class=" col-xs-8 col-sm-6">
+						 	<select
+							  style="width: 100%;"
+							  ng-init= 'regBody.testcsBoxModel.JIRAS.currentJIRA = regBody.testcsBoxModel.JIRAS.list[0]'
+							  name="PHASE No"
+							  ng-change="onChangeJiras(regBody.testcsBoxModel.JIRAS.currentJIRA.statcount)"
+							  ng-model="regBody.testcsBoxModel.JIRAS.currentJIRA"  
+							  ng-options ="p.selectedResult group by p.readdate for p in regBody.testcsBoxModel.JIRAS.list">
+							  <option value="">select PHASE </option>
+							 </select>
+						</div>
+						<div class="center col-xs-4 col-sm-4" >
+						    <button ng-show = "testCasedetails.buttons.del"style="border: none;font-size: x-large;color: rgb(153, 154, 155);"
+						        ng-show="editZera "ng-click="open()" tooltip-append-to-body='true' tooltip-placement="left" tooltip="add / edit  PHASE's" 
+						 		class="btn btn-default"><i class="icon icon-document-edit"></i>
+						 	</button>
+						</div>
+						<div class="col-xs-12" style="padding-top: 17px;">
+					
+					 <div class="succbar bars"  tooltip-append-to-body='true' tooltip-placement="bottom" tooltip="succuess % of all testcases " style="
+						width:{{succPer}}%;float:left;
+						 "> {{succPer}} % 
+				     </div> 
+				     
+				      <div class="failbar bars" tooltip-append-to-body='true' tooltip-placement="bottom" tooltip="failure % of all testcases "  style="
+						width:{{failPer}}%;float:left;
+						 "> {{failPer}} % 
+				     </div> 
+
+				 	</div>
+					</div>
+				</ul> 
+				<div class=" col-xs-12" style="z-index:99;">
+				   <button  tooltip-append-to-body='true' tooltip-placement="left" tooltip="add new member" ng-show="testCasedetails.buttons.add" ng-click ="addTestCases()"class='center buttonAligner'> 
+				      <i class="glyphicon icon icon-plus footericon" > </i>
+				   </button>
+				</div>
+				<ul class="runlist" style="font-size: 1em;">
+				<div class="ritsidelist col-xs-12" ng-show="regBody.testcsBoxModel.testCases.length == 0 ">No testcases available</div>
+					<a ng-repeat ="i in regBody.testcsBoxModel.testCases"    class="ritsidelist col-xs-12 ">
+						<label  ng-show = "testCasedetails.readMode" class="tstfstltr" ng-style="{background:i.color}">
+							{{i.selectedResult.substr(0,1)}}
+						</label>
+						 <span ng-show = "testCasedetails.readMode" ng-click="navtoRun(i.info.tscsid)" class="rilistdesc">
+						 	{{i.selectedResult.substr(1,i.selectedResult.length)}}
+						 </span>
+						 <span ng-show = "!testCasedetails.readMode" class=" col-xs-8">
+						  <input class="ipClass" 
+						    type="text"   
+					       	name="memeber name"
+					       	required
+					       	list="testcaseslist"
+					       	ng-hide="i.display"
+							ng-disabled="i.disabled" 
+							ng-change="i.isChanged=true"
+					        ng-pattern = "/^([\d\w\s/])*$/"
+					        ng-model="i.selectedResult"
+					        placeholder="enter test Case"
+						 >
+						 <datalist id="testcaseslist">
+									<select>
+									<option value=""></option>
+										<option ng-repeat ="subobj in regBoxmodel" value="{{subobj.name.selectedResult}}">
+									</select>
+									</datalist>
+						 </span>
+						<button ng-click="navtoRun(i.info.timestamp)"ng-show = "testCasedetails.buttons.nav" style="z-index:99999;margin-top:10px;border: none;" class="btn btn-default pull-right">
+						 	<i class="icon icon-chevron-right"   ></i>
+						 </button>
+						
+						<button tooltip-append-to-body='true' tooltip-placement="left" tooltip="delete this test case"  
+						ng-show = "testCasedetails.buttons.del" style="z-index:99999;padding:13px;border: none;height: 50px;color: #FF6C6C;" 
+							class="btn btn-default pull-right"
+							ng-click="deletetestCase(i)">
+							<i class="icon icon-cross"></i>
+						</button>
+					</a>
+				</ul> 	
+			 </form>	   
+  		   </section>
+  		   
+  		    <div>
+ 
+</div>

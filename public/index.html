@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title> STATUS MAGIK</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+       <!-- fonts -->
+    <link href="css/webfont.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/tempstyle.css" rel="stylesheet">
+    
+     <!-- loader styles for this template -->
+    <link href="css/loader.css" rel="stylesheet">
+    
+      <!-- loader styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+  <link rel="shortcut icon" href="css/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="css/favicon.ico" type="image/x-icon">
+  
+  </head>
+  <body>
+  <div ui-view></div>
+   	<script src="js/libs/jquery.min.js"></script>
+   	<script src="/socket.io/socket.io.js"></script>
+    <script src="js/libs/script.js"></script>
+    <script type="text/javascript" src="js/libs/angular.min.js"></script>
+    <script type="text/javascript" src="js/libs/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.10.0.min.js"></script>
+	<script type="text/javascript" src="js/libs/angular-touch.min.js"></script>
+	<script>
+	 		$script(['js/app.js'], function()
+			{
+			    angular.bootstrap(document, ['testApp'])
+			})
+	</script>
+  </body>
+</html>

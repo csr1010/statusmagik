@@ -1,0 +1,29 @@
+   	 <alert ng-show="alert.msg != ''" type="alert.type"   ng-swipe-right="alert.msg='' "  close="alert.msg='' ">{{alert.msg}}</alert>
+  		   <header>
+  		   <div class="dashes">
+  		  <button  ng-click="opensettings()" style="font-size: x-large;background: rgba(255, 0, 0, 0.02);;color: #FDFCFC;">
+  		      <i class="icon icon-menu"></i>
+  		      </button>
+  		   </div>
+  		   <abbr title="Register Employess here remove or transfer , activate or de activate them etc..">
+		            <span class="headerspan">{{regHead.title}}</span>
+		   </abbr>
+		   <button tooltip-append-to-body='true' tooltip-placement="left" tooltip="Create New Project" ng-show ="regHead.button.plus" ng-click ="gotoTestCases()"class='center buttonAligner'> 
+		   		<i class="glyphicon icon icon-plus footericon" > </i>
+		   	</button>
+  		   </header>
+  		  <!--  ng-style="{height:regListheight}" style="overflow-y: auto;" -->
+  		   <section ng-style="{height:regListheight}"   style="overflow-y: auto;  border-right: 1px solid rgb(240, 239, 239);">
+				<ul class="nonfilgridsholder">
+					<a  ng-repeat ="i in regBody.ProBoxmodel | orderBy:'firstLetter'"  ng-click="taketoTestcas(i.prjid)" class="ritsidelist col-xs-12">
+						<label  ng-style="{background:i.color}"  class="firstletter">{{i.name.selectedResult.substr(0,1)}}</label>
+						<span  class="rilistdesc">{{i.name.selectedResult}}</span>
+						<label class="rillistnum pull-right"  >{{i.count.selectedResult}}</label> 
+					</a>
+					<div class="ritsidelist col-xs-12" ng-show="regBody.ProBoxmodel.length == 0 ">Porjects not found..</div>
+				</ul> 		   
+  		   </section>
+  		   
+  		    <div>
+ 
+</div>
